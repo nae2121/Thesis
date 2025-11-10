@@ -18,6 +18,14 @@ volumes:
 - ./data:/app/data
 - ./shared/lib/prompts:/app/prompts:ro
 depends_on: [grobid, qdrant]
+web:
+build:
+context: ./web
+ports: ["3000:3000"]
+environment:
+- NEXT_PUBLIC_API_BASE_URL=http://api:8080
+depends_on: [api]
+
 
 
 grobid:
